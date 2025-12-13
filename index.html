@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerraSyn - Accelerating Climate Infrastructure Adoption</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #0ea5e9;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+            color: white;
+            padding: 0.75rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(14, 165, 233, 0.4);
+        }
+
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 100%);
+            padding: 4rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: #0f172a;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: #475569;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0ea5e9;
+            display: block;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-top: 0.3rem;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .card-1 {
+            top: 50px;
+            left: 50px;
+            animation-delay: 0s;
+        }
+
+        .card-2 {
+            top: 200px;
+            right: 50px;
+            animation-delay: 2s;
+        }
+
+        .card-3 {
+            bottom: 80px;
+            left: 100px;
+            animation-delay: 4s;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        section {
+            padding: 6rem 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+
+        .problem-solution {
+            background: white;
+        }
+
+        .ps-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .ps-card {
+            padding: 3rem;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #fef3c7 0%, #fca5a5 100%);
+        }
+
+        .ps-card.solution {
+            background: linear-gradient(135deg, #dbeafe 0%, #d1fae5 100%);
+        }
+
+        .ps-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #0f172a;
+        }
+
+        .ps-card p {
+            font-size: 1.1rem;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        .features {
+            background: #f8fafc;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .market {
+            background: white;
+        }
+
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+        }
+
+        .market-stat {
+            text-align: center;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 100%);
+            border-radius: 20px;
+        }
+
+        .market-stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #0ea5e9;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .market-stat-label {
+            color: #475569;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .team {
+            background: #0f172a;
+            color: white;
+        }
+
+        .team .section-header h2,
+        .team .section-header p {
+            color: white;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .team-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: #10b981;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .team-card p {
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 5%;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #0ea5e9;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        footer p {
+            color: #94a3b8;
+        }
+
+        @media (max-width: 968px) {
+            .hero-content, .ps-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid, .team-grid, .market-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">TerraSyn</div>
+        <ul class="nav-links">
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#solution">Solution</a></li>
+            <li><a href="#market">Market</a></li>
+            <li><a href="#team">Team</a></li>
+        </ul>
+        <a href="#contact" class="cta-button">Get in Touch</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Accelerating <span class="gradient-text">Climate Infrastructure</span> from Discovery to Deployment</h1>
+                <p>AI-powered platform that cuts technology adoption timelines from 10–15 years to 2–4 years, enabling faster climate action and smarter infrastructure decisions.</p>
+                <div>
+                    <a href="#contact" class="cta-button" style="margin-right: 1rem;">Request Demo</a>
+                    <a href="#solution" class="btn-secondary" style="display: inline-block; padding: 0.75rem 1.8rem; border-radius: 50px; text-decoration: none; font-weight: 600; background: transparent; color: #0ea5e9; border: 2px solid #0ea5e9;">Learn More</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">75%</span>
+                        <span class="stat-label">Timeline Reduction</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">$2.76T</span>
+                        <span class="stat-label">Market Opportunity</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">Real-Time</span>
+                        <span class="stat-label">Tech Discovery</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card card-1">
+                    <div class="card-icon">🔍</div>
+                    <div style="font-weight: 600; margin-bottom: 0.3rem;">Discovery</div>
+                    <div style="color: #64748b; font-size: 0.9rem;">Continuous monitoring</div>
+                </div>
+                <div class="floating-card card-2">
+                    <div class="card-icon">⚡</div>
+                    <div style="font-weight: 600; margin-bottom: 0.3rem;">Assessment</div>
+                    <div style="color: #64748b; font-size: 0.9rem;">Automated evaluation</div>
+                </div>
+                <div class="floating-card card-3">
+                    <div class="card-icon">🚀</div>
+                    <div style="font-weight: 600; margin-bottom: 0.3rem;">Deployment</div>
+                    <div style="color: #64748b; font-size: 0.9rem;">Accelerated adoption</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="problem-solution" id="problem">
+        <div class="section-header">
+            <h2>The Infrastructure Innovation Gap</h2>
+            <p>Climate challenges are accelerating, but technology adoption isn't keeping pace</p>
+        </div>
+        <div class="ps-grid">
+            <div class="ps-card">
+                <h3>🚨 The Problem</h3>
+                <p>It takes 10–15 years for emerging climate technologies to move from validation to real-world deployment. Governments, investors, and utilities lack the tools to rapidly identify and evaluate new solutions, creating a critical bottleneck in climate action.</p>
+            </div>
+            <div class="ps-card solution" id="solution">
+                <h3>✨ Our Solution</h3>
+                <p>TerraSyn's patent-pending reinforcement learning system autonomously discovers and evaluates pilot-ready technologies (TRL 5-7) in real-time, reducing the discovery-to-deployment timeline to 2–4 years through automated techno-economic analysis (TEA), life-cycle assessment (LCA), and multi-metric scoring.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="section-header">
+            <h2>How TerraSyn Works</h2>
+            <p>End-to-end intelligence for infrastructure technology decisions</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>RL-Powered Discovery</h3>
+                <p>Reinforcement learning agent autonomously searches the web, identifies TRL 5-7 technologies with measurable data, and updates the database on scheduled cycles—continuously learning and improving.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>TEA/LCA Analysis</h3>
+                <p>Automated techno-economic analysis (TEA) and life-cycle assessment (LCA) evaluate capital costs, operational efficiency, carbon emissions, and resource depletion—normalized to unified 1-100 scores.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>RAG-Powered Intelligence</h3>
+                <p>Retrieval-augmented generation (RAG) with vector embeddings enables semantic search, LLM-based explanations, and contextual insights—helping you understand why technologies rank the way they do.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Decision Engine</h3>
+                <p>Delivers actionable insights for investors, governments, and utilities to confidently deploy the most effective solutions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔐</div>
+                <h3>Patent-Pending IP</h3>
+                <p>Proprietary architecture combining continuous discovery with comprehensive assessment—unavailable anywhere else.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Climate Impact</h3>
+                <p>Accelerates adoption of climate-critical technologies, helping organizations meet resilience goals and emissions targets faster.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="market" id="market">
+        <div class="section-header">
+            <h2>Massive Market Opportunity</h2>
+            <p>Positioned at the intersection of climate tech and infrastructure modernization</p>
+        </div>
+        <div class="market-stats">
+            <div class="market-stat">
+                <span class="market-stat-number">$2.76T</span>
+                <span class="market-stat-label">Smart Infrastructure Market by 2032</span>
+            </div>
+            <div class="market-stat">
+                <span class="market-stat-number">$618B</span>
+                <span class="market-stat-label">Water Technology Sector by 2032</span>
+            </div>
+            <div class="market-stat">
+                <span class="market-stat-number">4</span>
+                <span class="market-stat-label">Key Customer Segments</span>
+            </div>
+        </div>
+        <div style="max-width: 1000px; margin: 3rem auto; background: #f8fafc; padding: 3rem; border-radius: 24px;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">Target Customers</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                <div style="padding: 1.5rem; background: white; border-radius: 16px;">
+                    <div style="font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem; color: #0ea5e9;">💼 VC & Impact Investors</div>
+                    <p style="color: #64748b;">Rapid insight into emerging infrastructure tech for improved deal flow and ROI</p>
+                </div>
+                <div style="padding: 1.5rem; background: white; border-radius: 16px;">
+                    <div style="font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem; color: #0ea5e9;">🏛️ Government Agencies</div>
+                    <p style="color: #64748b;">Meet emissions targets and modernize infrastructure with validated solutions</p>
+                </div>
+                <div style="padding: 1.5rem; background: white; border-radius: 16px;">
+                    <div style="font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem; color: #0ea5e9;">🔧 Engineering Firms</div>
+                    <p style="color: #64748b;">Stay aligned with cutting-edge technologies and emerging standards</p>
+                </div>
+                <div style="padding: 1.5rem; background: white; border-radius: 16px;">
+                    <div style="font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem; color: #0ea5e9;">⚡ Utilities</div>
+                    <p style="color: #64748b;">Strengthen resilience and upgrade systems for climate adaptation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team" id="team">
+        <div class="section-header">
+            <h2>Leadership Team</h2>
+            <p>World-class expertise in engineering, AI, and climate technology</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <h3>Lucas Ruda</h3>
+                <div class="team-role">CEO & Founder</div>
+                <p>Environmental Engineering student and research assistant at UT Austin specializing in water treatment technologies. Founder and inventor of TerraSyn's patent-pending architecture.</p>
+            </div>
+            <div class="team-card">
+                <h3>Puranjay Prashanth</h3>
+                <div class="team-role">CTO</div>
+                <p>Electrical & Computer Engineering student at UT Austin specializing in AI-driven systems and embedded computing. Leading technical development of the autonomous discovery platform.</p>
+            </div>
+            <div class="team-card">
+                <h3>Ashray Saxena</h3>
+                <div class="team-role">CMO</div>
+                <p>Leading business development and go-to-market strategy, bringing deep expertise in positioning climate tech solutions for institutional adoption.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <h2>Ready to Accelerate Climate Infrastructure?</h2>
+        <p>Join us in closing the innovation-to-deployment gap and building a more resilient future.</p>
+        <div class="cta-buttons">
+            <a href="mailto:info@terrasyn.io" class="btn-primary">Contact Us</a>
+            <a href="mailto:info@terrasyn.io?subject=Investment%20Inquiry" class="btn-secondary">Investor Inquiries</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 TerraSyn. All rights reserved. | Austin, Texas</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Patent Pending | Climate Tech Innovation</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .team-card, .ps-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
