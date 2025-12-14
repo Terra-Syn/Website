@@ -1,0 +1,67 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="url(#gradient1)" />
+  
+  <!-- Gradient definitions -->
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#f0f9ff;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Stylized Earth/Globe with tech grid -->
+  <circle cx="100" cy="100" r="65" fill="url(#gradient2)" stroke="#0ea5e9" stroke-width="3"/>
+  
+  <!-- Latitude lines -->
+  <ellipse cx="100" cy="100" rx="65" ry="20" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.6"/>
+  <ellipse cx="100" cy="100" rx="65" ry="40" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.6"/>
+  
+  <!-- Longitude lines -->
+  <ellipse cx="100" cy="100" rx="20" ry="65" fill="none" stroke="#0ea5e9" stroke-width="1.5" opacity="0.6"/>
+  <ellipse cx="100" cy="100" rx="40" ry="65" fill="none" stroke="#0ea5e9" stroke-width="1.5" opacity="0.6"/>
+  
+  <!-- Central circle (equator) -->
+  <circle cx="100" cy="100" r="65" fill="none" stroke="#10b981" stroke-width="2" opacity="0.4"/>
+  
+  <!-- AI/Neural network nodes -->
+  <circle cx="100" cy="50" r="5" fill="#0ea5e9" opacity="0.8"/>
+  <circle cx="140" cy="80" r="5" fill="#10b981" opacity="0.8"/>
+  <circle cx="140" cy="120" r="5" fill="#0ea5e9" opacity="0.8"/>
+  <circle cx="100" cy="150" r="5" fill="#10b981" opacity="0.8"/>
+  <circle cx="60" cy="120" r="5" fill="#0ea5e9" opacity="0.8"/>
+  <circle cx="60" cy="80" r="5" fill="#10b981" opacity="0.8"/>
+  
+  <!-- Connection lines (neural network style) -->
+  <line x1="100" y1="50" x2="140" y2="80" stroke="#0ea5e9" stroke-width="1.5" opacity="0.4"/>
+  <line x1="140" y1="80" x2="140" y2="120" stroke="#10b981" stroke-width="1.5" opacity="0.4"/>
+  <line x1="140" y1="120" x2="100" y2="150" stroke="#0ea5e9" stroke-width="1.5" opacity="0.4"/>
+  <line x1="100" y1="150" x2="60" y2="120" stroke="#10b981" stroke-width="1.5" opacity="0.4"/>
+  <line x1="60" y1="120" x2="60" y2="80" stroke="#0ea5e9" stroke-width="1.5" opacity="0.4"/>
+  <line x1="60" y1="80" x2="100" y2="50" stroke="#10b981" stroke-width="1.5" opacity="0.4"/>
+  
+  <!-- Center core (discovery engine) -->
+  <circle cx="100" cy="100" r="12" fill="#0ea5e9" opacity="0.9"/>
+  <circle cx="100" cy="100" r="8" fill="#ffffff" opacity="0.95"/>
+  <circle cx="100" cy="100" r="4" fill="#10b981"/>
+  
+  <!-- Orbiting data point (animated feel) -->
+  <circle cx="165" cy="100" r="4" fill="#10b981" opacity="0.9">
+    <animateTransform
+      attributeName="transform"
+      attributeType="XML"
+      type="rotate"
+      from="0 100 100"
+      to="360 100 100"
+      dur="8s"
+      repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Letter T integrated into design -->
+  <text x="100" y="110" font-family="Arial, sans-serif" font-size="45" font-weight="bold" fill="#0ea5e9" text-anchor="middle" opacity="0.15">T</text>
+</svg>
